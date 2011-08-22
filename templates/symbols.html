@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+
+
+{% block title %} {{ symbol }} | stockr {% endblock %}
+
+{% block head %}
+{{ super() }}
+
+<script type="text/javascript">
+// Load the Visualization API and the piechart package.
+      google.load('visualization', '1.0', {'packages':['corechart']});
+      
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.setOnLoadCallback(drawChart);
+      
+      // Callback that creates and populates a data table, 
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart(data_json) {
+        var ds_json = {{ data_json }}
+        
+        var data = new google.visualization.DataTable();
+    
+        data.addColumn('string', 'x');
+        data.addColumn('number', 'close_price');
+
+
+        for (i=0;i<=ds_json.length-1;i++) {
+
+            var d = ds_json[i];
+            var dt = d[0] + '';
+            var cp = d[1]
+            data.addRow([dt, cp]);
+        }                         
+
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        chart.draw(data, {curveType: "function", width: 1000, height: 400, title: 'Historical Stock Prices'});
+      }
+      
+</script>
+{% endblock head %}
+
+
+{% block body %}
+
+<div id='chart_div'></div>
+
+<h1> {{ symbol }} </h1>
+
+
+{% endblock %}

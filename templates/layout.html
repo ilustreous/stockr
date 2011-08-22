@@ -1,0 +1,16 @@
+<!doctype html>
+<title> {% block title %} stockr {% endblock %} </title>
+
+<head>
+{% block head %}
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+
+<script type="text/javascript", src="{{ url_for('static', filename='js/raphael.js') }}"></script>
+<script type="text/javascript", src="{{ url_for('static', filename='js/g.raphael.js') }}"></script>
+<script type="text/javascript", src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+<script type="text/javascript", src="{{ url_for('static', filename='js/jsapi.js') }}"></script>
+
+{% endblock head %}
+</head>
+
+{% block body %} {% endblock %}

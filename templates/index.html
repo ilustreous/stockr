@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block title %} Welcome | stockr {% endblock %}
+
+{% block body %}
+
+<h1> S&P 500 </h1>
+
+<ul>
+{% for item in data %}
+    <li><a href="{{url_for('symbol', sym=item[0])}}"> {{item[0]}} </a> </li>
+{% endfor %}
+</ul>
+
+{% endblock %}
